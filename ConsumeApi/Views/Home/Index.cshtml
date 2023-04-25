@@ -1,0 +1,39 @@
+﻿@model List<ConsumeApi.ResponseModels.ProductResponseModel>
+<html>
+<head>
+    <title>Web Api Consume</title>
+</head>
+
+<body>
+    <p>@ViewBag.ResponseMessage</p>
+
+    <a asp-action="Create" asp-controller="Home"> Yeni Ürün Ekle</a>
+
+    <table>
+        <tr>
+            <th>Ürünün Adı </th>
+            <th>Ürünün Fiyatı </th>
+            <th>Ürünün Stoğu </th>
+            <th></th>
+        </tr>
+        @{
+            if(Model != null)
+            {
+                @foreach (var product in Model)
+                {
+                    <tr>
+                        <td> @product.Name </td>
+                        <td> @product.Price </td>
+                        <td> @product.Stock </td>
+                        <td> <a asp-action="Update" asp-controller="Home" asp-route-id="@product.Id"> Güncelle </a> </td>
+                        <td> <a asp-action="Remove" asp-controller="Home" asp-route-id="@product.Id"> Sil </a> </td>
+                    </tr>
+                }
+            }
+        }
+       
+    </table>
+    <a asp-action="Upload" asp-controller="Home"> Yeni Dosya Ekle</a>
+
+</body>
+</html>
